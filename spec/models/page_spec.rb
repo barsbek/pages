@@ -10,11 +10,13 @@ end
 
 RSpec.describe Page, type: :model do
   context 'validations' do
-    it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :title }
     it { is_expected.to validate_presence_of :text }
 
     describe '#name' do
+      it { is_expected.to validate_presence_of :name }
+      it { is_expected.to validate_uniqueness_of :name }
+        
       context "valid format" do
         valid_names.each do |name|
           it { is_expected.to allow_value(name).for(:name) }
