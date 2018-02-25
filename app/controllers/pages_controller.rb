@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @subtree = @page.subtree.arrange
+    @subpages = @page.subtree.arrange
   end
 
   def new
