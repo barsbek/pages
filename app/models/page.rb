@@ -7,8 +7,10 @@ class Page < ApplicationRecord
     uniqueness: true
   
   def to_param
-    names = Page.where(id: path_ids).pluck(:name)
-    names.join('/')
+    @to_param ||= Page.where(id: path_ids)
+      .order(:created_at)
+      .pluck(:name)
+      .join('/')
   end
 
   def self.find_by_path(path)
