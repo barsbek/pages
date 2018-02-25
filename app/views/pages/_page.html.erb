@@ -1,0 +1,22 @@
+<div class="page">
+  <p>
+    <strong>Name:</strong>
+    <%= page.name %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= page.title %>
+  </p>
+
+  <p>
+    <strong>Text:</strong>
+    <%= page.text %>
+  </p>
+</div>
+
+<%= link_to 'Add',  new_page_path(page) %> |
+<%= link_to 'Edit', edit_page_path(page) %> |
+<%= link_to 'Show', page_path(page) %> |
+<%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', page_path(page.parent) %>

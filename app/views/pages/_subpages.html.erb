@@ -1,0 +1,6 @@
+<% pages.map do |page, children|%>
+  <%= render 'page', page: page %>
+  <div class="page-subtree">
+    <%= render 'subpages', pages: children if children.present? %>
+  </div>
+<% end %>
