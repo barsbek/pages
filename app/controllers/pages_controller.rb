@@ -1,8 +1,11 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_new_page, only: [:new, :create]
 
   def index
-    @pages = Page.roots.arrange
+    @pages ||= Page.roots.map do |page|
+      page.subtree.arrange
+    end
   end
 
   def show
@@ -10,14 +13,12 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Page.new_by_path(params[:path])
   end
 
   def edit
   end
 
   def create
-    @page = Page.new_by_path(params[:path])
     @page.assign_attributes(page_params)
 
     respond_to do |format|
@@ -55,6 +56,10 @@ class PagesController < ApplicationController
   private
     def set_page
       @page = Page.find_by_path(params[:path])
+    end
+
+    def set_new_page
+      @page = Page.new_by_path(params[:path])
     end
 
     def page_params

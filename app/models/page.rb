@@ -17,6 +17,7 @@ class Page < ApplicationRecord
     names = path.to_s.split('/')
     ids = Page.where(name: names).pluck(:id)
     page = Page.find_by(name: names.last)
+    # check by ids if requesting branch of pages exists
     if page.present? && page.path_ids.to_set == ids.to_set
       page
     else
@@ -25,11 +26,13 @@ class Page < ApplicationRecord
   end
 
   def self.new_by_path(path)
+    return Page.new unless path.present?
+
     parent = Page.find_by_path(path)
-    if parent.present? && path.present?
-      @page = parent.children.new
+    if parent.present?
+      parent.children.new
     else
-      @page = Page.new
+      raise ActiveRecord::RecordNotFound
     end
   end
 end
