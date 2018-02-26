@@ -1,24 +1,8 @@
-# README
+# Pages
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [x] Init repo, create and configure Rails app
+* [x] Scaffold and validate Pages (tested)
+* [x] Create Pages hierarchy and use that hierarchy in URL (tested)
+* [x] Implement basic makrdown (not tested yet)
+* [x] Write tests for essential and complex parts (done partly)
+* [ ] Minimize nested page’s loading duration if necessary
