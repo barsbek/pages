@@ -23,7 +23,9 @@
 
   <div class="field">
     <%= form.label :text %>
-    <%= form.text_area :text, id: :page_text %>
+    <%= form.text_area :text,
+      id: :page_text,
+      value: html_to_markdown(form.object.text) %>
   </div>
 
   <div class="actions">

@@ -11,7 +11,7 @@
 
   <p>
     <strong>Text:</strong>
-    <%= page.text %>
+    <%= sanitize page.text, tags: %w(a b i), attributes: %w(href) %>
   </p>
 </div>
 
