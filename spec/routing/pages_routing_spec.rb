@@ -8,32 +8,87 @@ RSpec.describe PagesController, type: :routing do
     end
 
     it "routes to #new" do
-      expect(:get => "/pages/new").to route_to("pages#new")
+      expect(:get => "/add").to(
+        route_to("pages#new")
+      )
+      expect(:get => "/name1/add").to(
+        route_to("pages#new", path: "name1")
+      )
+      expect(:get => "/name1/name2/add").to(
+        route_to("pages#new", path: "name1/name2")
+      )
     end
 
     it "routes to #show" do
-      expect(:get => "/pages/1").to route_to("pages#show", :id => "1")
+      expect(:get => "/name1").to(
+        route_to("pages#show", path: "name1")
+      )
+      expect(:get => "/name1/name2").to(
+        route_to("pages#show", path: "name1/name2")
+      )
+      expect(:get => "/name1/name2/name3").to(
+        route_to("pages#show", path: "name1/name2/name3")
+      )
     end
 
     it "routes to #edit" do
-      expect(:get => "/pages/1/edit").to route_to("pages#edit", :id => "1")
+      expect(:get => "/name1/edit").to(
+        route_to("pages#edit", path: "name1")
+      )
+      expect(:get => "/name1/name2/edit").to(
+        route_to("pages#edit", path: "name1/name2")
+      )
+      expect(:get => "/name1/name2/name3/edit").to(
+        route_to("pages#edit", path: "name1/name2/name3")
+      )
     end
 
     it "routes to #create" do
-      expect(:post => "/pages").to route_to("pages#create")
+      expect(:post => "/name1").to(
+        route_to("pages#create", path: "name1")
+      )
+      expect(:post => "/name1/name2").to(
+        route_to("pages#create", path: "name1/name2")
+      )
+      expect(:post => "/name1/name2/name3").to(
+        route_to("pages#create", path: "name1/name2/name3")
+      )
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/pages/1").to route_to("pages#update", :id => "1")
+      expect(:put => "/name1").to(
+        route_to("pages#update", path: "name1")
+      )
+      expect(:put => "/name1/name2").to(
+        route_to("pages#update", path: "name1/name2")
+      )
+      expect(:put => "/name1/name2/name3").to(
+        route_to("pages#update", path: "name1/name2/name3")
+      )
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/pages/1").to route_to("pages#update", :id => "1")
+      expect(:patch => "/name1").to(
+        route_to("pages#update", path: "name1")
+      )
+      expect(:patch => "/name1/name2").to(
+        route_to("pages#update", path: "name1/name2")
+      )
+      expect(:patch => "/name1/name2/name3").to(
+        route_to("pages#update", path: "name1/name2/name3")
+      )
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/pages/1").to route_to("pages#destroy", :id => "1")
+      expect(:delete => "/name1").to(
+        route_to("pages#destroy", path: "name1")
+      )
+      expect(:delete => "/name1/name2").to(
+        route_to("pages#destroy", path: "name1/name2")
+      )
+      expect(:delete => "/name1/name2/name3").to(
+        route_to("pages#destroy", path: "name1/name2/name3")
+      )
     end
-
   end
 end
