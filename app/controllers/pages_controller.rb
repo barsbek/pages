@@ -65,17 +65,8 @@ class PagesController < ApplicationController
     def page_params
       text = params.dig(:page, :text)
       if text.present?
-        params[:page][:text] = markdown_to_html(text, request.base_url)
+        params[:page][:text] = helpers.markdown_to_html(text, request.base_url)
       end
       params.require(:page).permit(:name, :title, :text)
-    end
-
-    def markdown_to_html(val, url)
-      val.to_s
-        .gsub(/\*{2}([^\*{2}]+)\*{2}/) { "<b>#{$1}</b>" }
-        .gsub(/\\{2}([^\\{2}]+)\\{2}/) { "<i>#{$1}</i>" }
-        .gsub(/\({2}([^\[]+)\[(.+)\]\){2}/) do
-          "<a href=#{url}/#{$1}>#{$2}</a>"
-        end
     end
 end

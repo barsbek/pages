@@ -7,4 +7,14 @@ module PagesHelper
         "((#{$1}[#{$2}]))"
       end
   end
+
+  def markdown_to_html(val, url)
+    val.to_s
+      .gsub(/\*{2}([^\*{2}]+)\*{2}/) { "<b>#{$1}</b>" }
+      .gsub(/\\{2}([^\\{2}]+)\\{2}/) { "<i>#{$1}</i>" }
+      .gsub(/\({2}([^\[]+)\[(.+)\]\){2}/) do
+        href = url ? "#{url}/#{$1}" : $1
+        "<a href=#{href}/#{$1}>#{$2}</a>"
+      end
+  end
 end
