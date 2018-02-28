@@ -1,25 +1,34 @@
-<div class="page">
-  <p>
-    <strong>Name:</strong>
-    <%= page.name %>
-  </p>
+<% page_hash.each do |page, child_hash|%>
+  <div class="page">
+    <h3 class="page-title">
+      <strong>Name:</strong>
+      <%= page.name %>
+    </h3>
 
-  <p>
-    <strong>Title:</strong>
-    <%= page.title %>
-  </p>
+    <p>
+      <strong>Title:</strong>
+      <%= page.title %>
+    </p>
 
-  <p>
-    <strong>Text:</strong>
-    <%= sanitize page.text, tags: %w(a b i), attributes: %w(href) %>
-  </p>
-</div>
+    <p>
+      <strong>Text:</strong>
+      <%= sanitize page.text, tags: %w(a b i), attributes: %w(href) %>
+    </p>
 
-<% unless current_page? page %>
-  <%= link_to 'Show', page %> |
-<% else %>
-  <%= link_to 'Back', page_path(@page.parent) %> |
+    <p class="page-links">
+      <% unless current_page? page %>
+      <%= link_to 'Show', page %> |
+      <% else %>
+        <%= link_to 'Back', page_path(page.parent) %> |
+      <% end %>
+      <%= link_to 'Add',  new_page_path(page) %> |
+      <%= link_to 'Edit', edit_page_path(page) %> |
+      <%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+    <% if child_hash.present? %>
+      <div class="page-subtree">
+        <%= render 'page', page_hash: child_hash %>
+      </end>
+    <% end %>
+  </div>
 <% end %>
-<%= link_to 'Add',  new_page_path(page) %> |
-<%= link_to 'Edit', edit_page_path(page) %> |
-<%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %>

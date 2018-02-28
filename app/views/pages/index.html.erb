@@ -2,9 +2,11 @@
 
 <%= link_to 'New Page', new_page_path %>
 
-<% @pages.each do |subpages| %>
-  <%= render 'subpages', pages: subpages %>
-  <% unless subpages == @pages.last %>
-    <hr>
+<div class="pages">
+  <% @pages.each do |page_hash| %>
+    <%= render 'page', page_hash: page_hash %>
+    <% unless page_hash == @pages.last %>
+      <hr>
+    <% end %>
   <% end %>
-<% end %>
+</div>
