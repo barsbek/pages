@@ -40,6 +40,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'rspec-rails', '~> 3.7'
+
+  gem 'guard-rspec', '~> 4.7', require: false
 end
 
 group :development do
