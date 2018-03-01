@@ -17,23 +17,23 @@ RSpec.describe "pages/index", type: :view do
     assert_select ".pages" do
       # root level
       assert_select ".page" do
-        assert_select ".page-title", /grandpa/
+        assert_select ".page-name", /grandpa/
         assert_select ".page-links a", "Show"
 
         assert_select ".page-subtree" do
           # parent level
           assert_select ".page" do
-            assert_select ".page-title", /parent/
+            assert_select ".page-name", /parent/
             assert_select ".page-links a", "Show"
 
             assert_select ".page-subtree" do
               # child level
               assert_select ".page" do
-                assert_select ".page-title", /child1/
+                assert_select ".page-name", /child1/
                 assert_select ".page-links a", "Show"
               end
               assert_select ".page" do
-                assert_select ".page-title", /child2/
+                assert_select ".page-name", /child2/
                 assert_select ".page-links a", "Show"
               end
             end
@@ -41,7 +41,7 @@ RSpec.describe "pages/index", type: :view do
 
           # parent level
           assert_select ".page" do
-            assert_select ".page-title", /parent_empty/
+            assert_select ".page-name", /parent_empty/
             assert_select ".page-links a", "Show"
           end
         end

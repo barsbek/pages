@@ -19,17 +19,17 @@ RSpec.describe "pages/show", type: :view do
 
     # parent level
     assert_select ".page" do |elements|
-      assert_select ".page-title", /parent/
+      assert_select ".page-name", /parent/
       assert_select ".page-links a", "Back"
 
       assert_select ".page-subtree" do
         # child level
         assert_select ".page" do
-          assert_select ".page-title", /child1/
+          assert_select ".page-name", /child1/
           assert_select ".page-links a", "Show"
         end
         assert_select ".page" do
-          assert_select ".page-title", /child2/
+          assert_select ".page-name", /child2/
           assert_select ".page-links a", "Show"
         end
       end
