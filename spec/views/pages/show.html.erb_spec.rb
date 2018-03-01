@@ -8,6 +8,9 @@ RSpec.describe "pages/show", type: :view do
     p2 = Page.create!(name: :parent_empty, parent: g, title: :t, text: :t)
     ch1 = Page.create!(name: :child1, parent: @p1, title: :t, text: :t)
     ch2 = Page.create!(name: :child2, parent: @p1, title: :t, text: :t)
+    
+    allow(view).to receive(:current_page?).and_return(false)
+    allow(view).to receive(:current_page?).with(@p1).and_return(true)
   end
 
   it "renders all pages hierarchy" do
@@ -15,13 +18,20 @@ RSpec.describe "pages/show", type: :view do
     render
 
     # parent level
-    assert_select ".page" do
+    assert_select ".page" do |elements|
       assert_select ".page-title", /parent/
+      assert_select ".page-links a", "Back"
 
       assert_select ".page-subtree" do
         # child level
-        assert_select ".page-title", /child1/
-        assert_select ".page-title", /child2/
+        assert_select ".page" do
+          assert_select ".page-title", /child1/
+          assert_select ".page-links a", "Show"
+        end
+        assert_select ".page" do
+          assert_select ".page-title", /child2/
+          assert_select ".page-links a", "Show"
+        end
       end
     end
   end

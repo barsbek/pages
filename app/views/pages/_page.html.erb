@@ -17,7 +17,7 @@
 
     <p class="page-links">
       <% unless current_page? page %>
-      <%= link_to 'Show', page %> |
+        <%= link_to 'Show', page %> |
       <% else %>
         <%= link_to 'Back', page_path(page.parent) %> |
       <% end %>
